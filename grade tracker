@@ -1,0 +1,63 @@
+import java.util.Scanner;
+
+public class GradeTracker {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Enter the number of subjects: ");
+        int numSubjects = scanner.nextInt();
+        
+        double[] grades = new double[numSubjects];
+        String[] subjects = new String[numSubjects];
+        
+        for (int i = 0; i < numSubjects; i++) {
+            System.out.print("Enter the name of subject " + (i + 1) + ": ");
+            subjects[i] = scanner.next();
+            
+            System.out.print("Enter the grade for subject " + (i + 1) + ": ");
+            grades[i] = scanner.nextDouble();
+        }
+        
+        double sum = 0;
+        for (double grade : grades) {
+            sum += grade;
+        }
+        double averageGrade = sum / numSubjects;
+        
+        System.out.println("Overall Grade: " + averageGrade);
+        
+        String letterGrade = calculateLetterGrade(averageGrade);
+        System.out.println("Letter Grade: " + letterGrade);
+        
+        double gpa = calculateGPA(averageGrade);
+        System.out.println("GPA: " + gpa);
+    }
+    
+    private static String calculateLetterGrade(double grade) {
+        if (grade >= 90) {
+            return "A";
+        } else if (grade >= 80) {
+            return "B";
+        } else if (grade >= 70) {
+            return "C";
+        } else if (grade >= 60) {
+            return "D";
+        } else {
+            return "F";
+        }
+    }
+    
+    private static double calculateGPA(double grade) {
+        if (grade >= 90) {
+            return 4.0;
+        } else if (grade >= 80) {
+            return 3.0;
+        } else if (grade >= 70) {
+            return 2.0;
+        } else if (grade >= 60) {
+            return 1.0;
+        } else {
+            return 0.0;
+        }
+    }
+}
